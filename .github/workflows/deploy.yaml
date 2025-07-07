@@ -20,7 +20,7 @@ jobs:
 
       - name: Initialize Terraform
         run: |
-          cd vector/dev/main/
+          cd vector/dev/main
           terraform init
 
       - name: Terraform Plan
