@@ -20,17 +20,17 @@ jobs:
 
       - name: Initialize Terraform
         run: |
-          cd dev/main/
+          cd vector/dev/main/
           terraform init
 
       - name: Terraform Plan
         run: |
-          cd dev/main/
+          cd vector/dev/main/
           terraform plan -var-file=main.tfvars
 
       - name: Terraform Apply
         run: |
-          cd dev/main/
+          cd vector/dev/main/
           terraform apply -var-file=main.tfvars --auto-approve
  
       
