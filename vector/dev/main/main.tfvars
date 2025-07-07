@@ -1,16 +1,17 @@
 aws_region             = "us-east-1"
 name                   = "main"
-cluster_id             = "arn:aws:ecs:us-east-1:178445662108:cluster/us-east-dev-corp-gdap-cluster-fargate-eb-daap"
-cluster_name           = "us-east-dev-corp-gdap-cluster-fargate-eb-daap"
-execution_role_arn     = "arn:aws:iam::178445662108:role/US-EAST-DEV-CORP-GDAP-ERRORBUDGET-ECS-ROLE"
-task_role_arn          = "arn:aws:iam::178445662108:role/US-EAST-DEV-CORP-GDAP-ERRORBUDGET-ECS-ROLE"
-svc_account            = "arn:aws:secretsmanager:us-east-1:178445662108:secret:non-prod-gdap-artifactory-ybrklc"
-vpc_id                 = "vpc-0597cf04f728274b1"
-subnet_ids             = ["subnet-0e0f110e147710103" , "subnet-0c6bc6e35e3985c60" , "subnet-09c8ef9219d0de26d" , "subnet-095987d6f7f35c297"]
-security_group_ids     = ["sg-0120962c581cb9218" , "sg-0e1381e16650612b7" , "sg-080870fde686d272a"]
+cluster_id             = "arn:aws:ecs:us-east-1:269031123365:cluster/mohana-ecs-cluster"
+cluster_name           = "mohana-ecs-cluster"
+execution_role_arn     = "arn:aws:iam::269031123365:role/mohana-admin-role"
+task_role_arn          = "arn:aws:iam::269031123365:role/mohana-admin-role"
+#svc_account            = "arn:aws:secretsmanager:us-east-1:178445662108:secret:non-prod-gdap-artifactory-ybrklc"
+vpc_id                 = "vpc-0437701bbfe96b9a9"
+subnet_ids             = ["subnet-018a29d7fc5cf6401" , "subnet-09861fbc20853cc66"]
+security_group_ids     = ["sg-0843384d70da85c46" , "sg-0baac50d3fac315bc"]
 assign_public_ip       = false
-bucket_name            = "us-east-dev-us-gdap-errorbudget"
-container_image        = "mcd.jfrog.io/gdap-docker-dev/dret/vector:0.39.0-alpine"
+bucket_name            = "mohana6-bucket"
+container_image        = "269031123365.dkr.ecr.us-east-1.amazonaws.com/mohana:latest"
+nginx_image = "269031123365.dkr.ecr.us-east-1.amazonaws.com/mohana:nginx"
 
 # Autoscaling Configuration
 min_capacity       = 1
@@ -50,8 +51,8 @@ log_retention_days     = 30
 environment = {
   "VECTOR_LOG" = "debug"
   "RUST_BACKTRACE" = "full"
-  "VECTOR_CONFIG_BUCKET_URL" = "s3://us-east-dev-us-gdap-errorbudget/vector_config/vector.yaml"
-  
+  #"VECTOR_CONFIG_BUCKET_URL" = "s3://us-east-dev-us-gdap-errorbudget/vector_config/vector.yaml"
+  #"NGINX_CONFIG_BUCKET_URL" = "s3://us-east-dev-us-gdap-errorbudget/vector_config/vector.yaml"
 }
 
 tags = {

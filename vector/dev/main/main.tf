@@ -3,7 +3,7 @@
 
   default_tags {
     tags = {
-      ApplicationID = "2000039"
+      ApplicationID = "239"
     }
   }
 }
@@ -12,6 +12,13 @@
   key    = "vector_config/vector.yaml" 
   source = "vector.yaml"  
   etag   = filemd5("vector.yaml")  
+}
+
+resource "aws_s3_object" "nginx_config" {
+  bucket = var.bucket_name
+  key    = "nginx_config/nginx_main.conf" 
+  source = "nginx_main.conf"  
+  etag   = filemd5("nginx_main.conf")  
 }
 
 module "vector_main" {
@@ -24,13 +31,12 @@ module "vector_main" {
   cluster_name           = var.cluster_name
   execution_role_arn     = var.execution_role_arn
   task_role_arn          = var.task_role_arn
-  #target_mount_point = var.target_mount_point
-  #source_mount_point = var.source_mount_point
-  #efs_id = var.efs_id
   port_mappings          = var.port_mappings
   svc_account            = var.svc_account
   container_image        = var.container_image
+  nginx_image            = var.nginx_image 
   environment            = var.environment
+  
   
 
   service_count       = var.service_count

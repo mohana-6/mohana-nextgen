@@ -205,3 +205,7 @@ variable "scale_out_cooldown" {
   type        = number
   default     = 300
 }
+variable "nginx_image" {
+  description = "nginx image"
+  type        = string
+}
