@@ -15,7 +15,7 @@
 }
 
 module "vector_main" {
- source = "../../modules/vector"
+ source = "../../module/vector"
  
   # Basic settings
   aws_region             = var.aws_region
