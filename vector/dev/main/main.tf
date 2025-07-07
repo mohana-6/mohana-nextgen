@@ -32,7 +32,7 @@ module "vector_main" {
   execution_role_arn     = var.execution_role_arn
   task_role_arn          = var.task_role_arn
   port_mappings          = var.port_mappings
-  svc_account            = var.svc_account
+  #svc_account            = var.svc_account
   container_image        = var.container_image
   nginx_image            = var.nginx_image 
   environment            = var.environment

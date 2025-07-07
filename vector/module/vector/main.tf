@@ -14,9 +14,9 @@ resource "aws_ecs_task_definition" "vector_main" {
       name      = "vector-${var.name}"
       image     = var.container_image
       essential = true
-      "repositoryCredentials": {
-        "credentialsParameter": var.svc_account
-      }
+      #"repositoryCredentials": {
+       # "credentialsParameter": var.svc_account
+      #}
 
     
        portMappings = var.port_mappings
