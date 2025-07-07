@@ -141,7 +141,7 @@ sinks:
     type: vector
     inputs:
       - route_log.prod_mosot
-    address: "http://vector-mosot.mcd.com:8686"
+    address: localhost:6001
 
   star:
     type: vector

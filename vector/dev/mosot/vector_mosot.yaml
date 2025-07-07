@@ -101,7 +101,7 @@ sinks:
     inputs:
       - parse_json
     database: default
-    endpoint: http://100.106.23.77:8123
+    endpoint: http://3.239.104.86:8123
     table: cloudwatch
     auth:
       strategy: basic
