@@ -57,6 +57,7 @@ module "vector_main" {
   vector_log_level  = var.vector_log_level
   log_retention_days = var.log_retention_days
  
+ 
   # Tags
   tags = var.tags
 }
