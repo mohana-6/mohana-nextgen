@@ -36,6 +36,7 @@ module "vector_main" {
   container_image        = var.container_image
   nginx_image            = var.nginx_image 
   environment            = var.environment
+  target_group_arn       = var.target_group_arn
   
   
 

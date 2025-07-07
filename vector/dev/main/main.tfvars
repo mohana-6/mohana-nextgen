@@ -12,6 +12,7 @@ assign_public_ip       = false
 bucket_name            = "mohana6-bucket"
 container_image        = "269031123365.dkr.ecr.us-east-1.amazonaws.com/mohana:latest"
 nginx_image = "269031123365.dkr.ecr.us-east-1.amazonaws.com/mohana:nginx"
+target_group_arn       = "arn:aws:elasticloadbalancing:us-east-1:269031123365:targetgroup/vector-demo-tg/9e881ebec463093e"
 
 # Autoscaling Configuration
 min_capacity       = 1

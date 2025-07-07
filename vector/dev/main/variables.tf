@@ -197,3 +197,9 @@ variable "nginx_image" {
   description = "nginx image"
   type        = string
 }
+
+variable "target_group_arn" {
+  description = "target_group for the vector"
+  type        = string
+  default     = "vector"
+}
