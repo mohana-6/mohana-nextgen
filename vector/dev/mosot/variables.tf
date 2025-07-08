@@ -65,7 +65,7 @@ variable "efs_id" {
 variable "assign_public_ip" {
   description = "Whether to assign public IP addresses to ECS tasks"
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "container_image" {

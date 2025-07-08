@@ -99,7 +99,7 @@ variable "security_group_ids" {
 variable "assign_public_ip" {
   description = "Whether to assign a public IP to the Fargate task"
   type        = bool
-  default     = false
+  default     = true
 }
 
 /*variable "target_mount_point" {
