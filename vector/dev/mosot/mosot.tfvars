@@ -10,7 +10,7 @@ vpc_id                 = "vpc-0597cf04f728274b1"
 subnet_ids             = ["subnet-0e0f110e147710103" , "subnet-0c6bc6e35e3985c60" , "subnet-09c8ef9219d0de26d" , "subnet-095987d6f7f35c297"]
 security_group_ids     = ["sg-0120962c581cb9218" , "sg-0e1381e16650612b7" , "sg-080870fde686d272a"]
 assign_public_ip       = false
-bucket_name            = "us-east-dev-us-gdap-errorbudget"
+bucket_name            = "mohana6-bucket"
 container_image        = "mcd.jfrog.io/gdap-docker-dev/dret/vector:0.39.0-alpine"
 nginx_image = "269031123365.dkr.ecr.us-east-1.amazonaws.com/mohana:nginx"
 target_group_arn       = "arn:aws:elasticloadbalancing:us-east-1:178445662108:targetgroup/vector-mosot-tg/0e9f8f81f500fdf4"
@@ -48,9 +48,10 @@ log_retention_days     = 30
 environment = {
   "VECTOR_LOG" = "debug"
   "RUST_BACKTRACE" = "full"
-  "VECTOR_CONFIG_BUCKET_URL" = "s3://us-east-dev-us-gdap-errorbudget/vector_config/vector_mosot.yaml"
-  "clk_val1"            = "arn:aws:secretsmanager:us-east-1:178445662108:secret:us-east-dev-corp-eb-clickhouse-username-yWzJg1"
-  "clk_val2"            = "arn:aws:secretsmanager:us-east-1:178445662108:secret:us-east-dev-corp-eb-clickhouse-password-69qFMR" 
+  "VECTOR_CONFIG_BUCKET_URL" = "s3://mohana6-bucket/vector_config/vector_mosot.yaml"
+  "NGINX_CONFIG_BUCKET_URL" = "s3://mohana6-bucket/nginx_config/nginx_mosot.conf"
+  "clk_val1"            = "arn:aws:secretsmanager:us-east-1:269031123365:secret:us-east-dev-corp-eb-clickhouse-username-HM13f7"
+  "clk_val2"            = "arn:aws:secretsmanager:us-east-1:269031123365:secret:us-east-dev-corp-eb-clickhouse-password-8Os0R5" 
 
 }
 
