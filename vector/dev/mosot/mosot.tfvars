@@ -7,7 +7,7 @@ execution_role_arn     = "arn:aws:iam::269031123365:role/mohana-admin-role"
 task_role_arn          = "arn:aws:iam::269031123365:role/mohana-admin-role"
 #svc_account            = "arn:aws:secretsmanager:us-east-1:178445662108:secret:non-prod-gdap-artifactory-ybrklc"
 vpc_id                 = "vpc-0437701bbfe96b9a9"
-subnet_ids             = ["subnet-018a29d7fc5cf6401" , "subnet-09861fbc20853cc66"]
+subnet_ids             = ["subnet-07adaeb561618127e" , "subnet-03a9ba72e44d58bd2"]
 security_group_ids     = ["sg-0843384d70da85c46" , "sg-0baac50d3fac315bc"]
 assign_public_ip       = true
 bucket_name            = "mohana6-bucket"
@@ -34,8 +34,8 @@ port_mappings = [
     protocol      = "tcp"
   }
 ]
-task_cpu               = "2048"
-task_memory            = "4096"
+task_cpu               = "1024"
+task_memory            = "2048"
 vector_version         = "0.39.0-alpine"
 vector_log_level       = "info"
 log_retention_days     = 30
