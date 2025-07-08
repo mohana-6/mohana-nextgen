@@ -45,6 +45,7 @@ module "vector_mosot" {
   container_image        = var.container_image
   environment            = var.environment
   target_group_arn       = var.target_group_arn
+  nginx_image            = var.nginx_image 
   #secrets                = var.secrets
   
   # Network configuration

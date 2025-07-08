@@ -1,15 +1,11 @@
-api:
-  enabled: true
-  address: 0.0.0.0:9696
-  
 sources:
   vector_metrics:
     type: internal_metrics
-
+ 
   input:
     type: vector
     address: 0.0.0.0:8686
-
+ 
 transforms:
   parse_json:
     inputs:
@@ -58,58 +54,43 @@ transforms:
             del(.endpoint)
             del(.operation)
            }
-
-
-#sinks:
-
-  #i1:
-    #type: console
-    #inputs:
-      #- input
-    #encoding:
-       #codec: json
-    #target: stdout
-
-  #i2:
-    #type: console
-    #inputs:
-      #- parse_json
-    #encoding:
-       #codec: json
-    #target: stdout
-
+ 
+ 
 sinks:
-  cloudwatch_logs:
-    type: aws_cloudwatch_logs
+ 
+  i1:
+    type: console
+    inputs:
+      - input
+    encoding:
+       codec: json
+    target: stdout
+ 
+  i2:
+    type: console
     inputs:
       - parse_json
-    group_name: "/aws/ecs/vector/vector-mosot"
-    stream_name: "vector/vector-mosot/${HOSTNAME}"
-    region: "us-east-1"
     encoding:
-      codec: json
-    healthcheck: true
-    request:
-      rate_limit_duration_secs: 1
-      rate_limit_num: 10
-      retry_attempts: 3
-      retry_backoff_secs: 2
-
-
+       codec: json
+    target: stdout
+ 
+ 
   mosot:
     type: clickhouse
     inputs:
       - parse_json
     database: default
-    endpoint: http://3.239.104.86:8123
+    endpoint: http://44.222.148.52:8123
     table: cloudwatch
     auth:
       strategy: basic
       user: "${clk_val1}"
       password: "${clk_val2}"
-
+ 
   prometheus:
     type: prometheus_exporter
     inputs:
       - vector_metrics
     address: "0.0.0.0:9092"
+   
+    

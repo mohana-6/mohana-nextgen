@@ -12,6 +12,7 @@ security_group_ids     = ["sg-0120962c581cb9218" , "sg-0e1381e16650612b7" , "sg-
 assign_public_ip       = false
 bucket_name            = "us-east-dev-us-gdap-errorbudget"
 container_image        = "mcd.jfrog.io/gdap-docker-dev/dret/vector:0.39.0-alpine"
+nginx_image = "269031123365.dkr.ecr.us-east-1.amazonaws.com/mohana:nginx"
 target_group_arn       = "arn:aws:elasticloadbalancing:us-east-1:178445662108:targetgroup/vector-mosot-tg/0e9f8f81f500fdf4"
 
 min_capacity           = 1

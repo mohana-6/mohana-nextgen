@@ -1,4 +1,3 @@
-
 # ECS Task Definition for Vector on Fargate
 resource "aws_ecs_task_definition" "vector_main" {
   family                   = "vector-${var.name}"
@@ -27,26 +26,6 @@ resource "aws_ecs_task_definition" "vector_main" {
         }
       ]
 
-      # Secret environment variables from Secrets Manager
-      /*"secrets": [
-        {
-          "name": "clk_val1",
-          "valueFrom": "arn:aws:secretsmanager:us-east-1:178445662108:secret:us-east-dev-corp-eb-clickhouse-username-yWzJg1"
-        },
-        {
-          "name": "clk_val2",
-          "valueFrom": "arn:aws:secretsmanager:us-east-1:178445662108:secret:us-east-dev-corp-eb-clickhouse-password-69qFMR"
-        }
-      ]*/
-      
-       /*mountPoints = [
-        {
-          sourceVolume  = "efs-volume"
-          containerPath = var.target_mount_point
-          readOnly = false
-        }
-      ]*/
-
       logConfiguration = {
         logDriver = "awslogs"
         options = {
@@ -55,24 +34,46 @@ resource "aws_ecs_task_definition" "vector_main" {
           "awslogs-stream-prefix" = "vector"
         }
       }
+    },
+    {
+      name      = "nginx-${var.name}"
+      image     = var.nginx_image
+      essential = true
+
+     #"repositoryCredentials": {
+
+        #"credentialsParameter": var.svc_account
+
+      #}
+
+      portMappings = [
+        {
+          containerPort = 80
+          protocol      = "tcp"
+        }
+      ]
+
+      environment = [
+
+        for name, value in var.environment : {
+
+          name  = name
+          value = value
+
+        }
+      ]
+      logConfiguration = {
+        logDriver = "awslogs"
+        options = {
+          awslogs-group         = aws_cloudwatch_log_group.nginx_logs.name
+          awslogs-region        = var.aws_region
+          awslogs-stream-prefix = "nginx"
+        }
+      }
     }
+
   ])
   tags = var.tags
-
-  /*volume {
-    name = "efs-volume"
-    
-    efs_volume_configuration {
-      file_system_id = var.efs_id
-      root_directory = "/"
-      transit_encryption = "ENABLED"
-      authorization_config {
-        access_point_id = "fsap-0f87893ebf7d7de0a"
-        iam             = "ENABLED"  # Use IAM authorization
-      }
-
-    }
-  }*/
 }
 
 # ECS Service
@@ -136,4 +137,14 @@ resource "aws_cloudwatch_log_group" "vector_logs" {
 resource "aws_cloudwatch_log_stream" "this_log_stream" {
   name           = "vector-log-stream"  
   log_group_name = aws_cloudwatch_log_group.vector_logs.name  
+}
+
+resource "aws_cloudwatch_log_group" "nginx_logs" {
+  name              = "/aws/ecs/vector/nginx-${var.name}"
+  retention_in_days = var.log_retention_days
+}
+
+resource "aws_cloudwatch_log_stream" "nginx_log_stream" {
+  name           = "nginx-log-stream"  
+  log_group_name = aws_cloudwatch_log_group.nginx_logs.name  
 }
