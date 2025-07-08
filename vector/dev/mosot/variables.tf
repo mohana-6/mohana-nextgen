@@ -45,10 +45,7 @@ variable "security_group_ids" {
   type        = list(string)  
   default     = [] 
 }
-variable "svc_account" {
-  description = "JFROG repo service account"
-  type        = string
-}
+
 
 /*variable "target_mount_point" {
   description = "target mount point on vector"

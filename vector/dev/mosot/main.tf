@@ -41,7 +41,6 @@ module "vector_mosot" {
   #source_mount_point = var.source_mount_point
   #efs_id = var.efs_id
   port_mappings = var.port_mappings
-  svc_account            = var.svc_account
   container_image        = var.container_image
   environment            = var.environment
   target_group_arn       = var.target_group_arn
