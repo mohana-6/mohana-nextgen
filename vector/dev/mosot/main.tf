@@ -14,11 +14,11 @@ resource "aws_s3_object" "vector_config" {
   source = "vector_mosot.yaml"  
   etag   = filemd5("vector_mosot.yaml")  
 }
-resource "aws_s3_object" "ngnix_config" {
+resource "aws_s3_object" "nginx_config" {
   bucket = var.bucket_name
-  key    = "ngnix_config/ngnix_mosot.conf" 
-  source = "ngnix_mosot.conf"  
-  etag   = filemd5("ngnix_mosot.conf")  
+  key    = "nginx_config/ngnix_mosot.conf" 
+  source = "nginx_mosot.conf"  
+  etag   = filemd5("nginx_mosot.conf")  
 }
 
 module "vector_mosot" {
