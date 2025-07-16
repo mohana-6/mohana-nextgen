@@ -55,8 +55,7 @@ log_retention_days     = 30
 environment = {
   "VECTOR_LOG" = "debug"
   "RUST_BACKTRACE" = "full"
-  "VECTOR_CONFIG_BUCKET_URL" = "s3://us-east-dev-us-gdap-errorbudget/vector_config/vector.yaml"
-  "NGINX_CONFIG_BUCKET_URL"  = "s3://us-east-dev-us-gdap-errorbudget/nginx_config/nginx_main.conf"
+  "VECTOR_CONFIG_BUCKET_URL" = "s3://mohana6-bucket/vector_config/vector.yaml"
 }
 
 tags = {
