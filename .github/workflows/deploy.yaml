@@ -26,10 +26,12 @@ jobs:
         working-directory: vector/dev/mosot
         run: terraform validate
 
-      - name: Terraform Plan Destroy
+      - name: Terraform Plan
         working-directory: vector/dev/mosot
-        run: terraform plan -destroy -out=tfplan -var-file=mosot.tfvars
+        run: terraform plan -out=tfplan -var-file=mosot.tfvars
 
-      - name: Terraform Apply Destroy
+      - name: Terraform Apply
         working-directory: vector/dev/mosot
         run: terraform apply -auto-approve tfplan
+
+      
