@@ -28,7 +28,7 @@ jobs:
 
       - name: Terraform Plan Destroy
         working-directory: vector/dev/mosot
-        run: terraform plan -destroy -out=tfplan -var-file=main.tfvars
+        run: terraform plan -destroy -out=tfplan -var-file=mosot.tfvars
 
       - name: Terraform Apply Destroy
         working-directory: vector/dev/mosot
