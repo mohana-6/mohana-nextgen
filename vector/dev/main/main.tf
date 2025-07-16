@@ -22,7 +22,7 @@ resource "aws_s3_object" "nginx_config" {
 }
 
 module "vector_main" {
- source = "../../modules/vector"
+ source = "../../module/vector"
  
   # Basic settings
   aws_region             = var.aws_region
