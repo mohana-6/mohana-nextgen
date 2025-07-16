@@ -10,18 +10,17 @@ subnet_ids             = ["subnet-07adaeb561618127e" , "subnet-03a9ba72e44d58bd2
 security_group_ids     = ["sg-0843384d70da85c46" , "sg-0baac50d3fac315bc"]
 assign_public_ip       = true
 bucket_name            = "mohana6-bucket"
-container_image        = "269031123365.dkr.ecr.us-east-1.amazonaws.com/mohana:latest"
-nginx_image = "269031123365.dkr.ecr.us-east-1.amazonaws.com/mohana:nginx"
-target_group_arn       = "arn:aws:elasticloadbalancing:us-east-1:269031123365:targetgroup/vector-demo-tg/9e881ebec463093e"
+#container_image        = "269031123365.dkr.ecr.us-east-1.amazonaws.com/mohana:latest"
+#nginx_image = "269031123365.dkr.ecr.us-east-1.amazonaws.com/mohana:nginx"
+target_group_arn       = "arn:aws:elasticloadbalancing:us-east-1:269031123365:targetgroup/vector-tg/e282a74b31eb1e61"
 
 # Autoscaling Configuration
 min_capacity       = 1
-max_capacity       = 5
+max_capacity       = 1
 cpu_target_value   = 85
 scale_in_cooldown  = 300
 scale_out_cooldown = 300
-service_count      =  1
-
+service_count      = 1
 
 port_mappings = [
   {
@@ -38,6 +37,11 @@ port_mappings = [
     containerPort = 9092
     hostPort      = 9092
     protocol      = "tcp"
+  },
+  {
+    containerPort = 80
+    hostPort      = 80
+    protocol      = "tcp"
   }
 
 ]
@@ -47,13 +51,12 @@ vector_version         = "0.39.0-alpine"
 vector_log_level       = "info"
 log_retention_days     = 30
 
-
 # Environment variables
 environment = {
   "VECTOR_LOG" = "debug"
   "RUST_BACKTRACE" = "full"
-  "VECTOR_CONFIG_BUCKET_URL" = "s3://mohana6-bucket/vector_config/vector.yaml"
-  "NGINX_CONFIG_BUCKET_URL" = "s3://mohana6-bucket/nginx_config/nginx_main.conf"
+  "VECTOR_CONFIG_BUCKET_URL" = "s3://us-east-dev-us-gdap-errorbudget/vector_config/vector.yaml"
+  "NGINX_CONFIG_BUCKET_URL"  = "s3://us-east-dev-us-gdap-errorbudget/nginx_config/nginx_main.conf"
 }
 
 tags = {

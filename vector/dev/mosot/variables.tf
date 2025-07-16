@@ -45,27 +45,15 @@ variable "security_group_ids" {
   type        = list(string)  
   default     = [] 
 }
-
-
-/*variable "target_mount_point" {
-  description = "target mount point on vector"
+variable "svc_account" {
+  description = "JFROG repo service account"
   type        = string
 }
-
-variable "source_mount_point" {
-  description = "source mount point on efs"
-  type        = string
-}
-
-variable "efs_id" {
-  description = "efs file system id"
-  type        = string
-}*/
 
 variable "assign_public_ip" {
   description = "Whether to assign public IP addresses to ECS tasks"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "container_image" {
@@ -148,12 +136,6 @@ variable "service_count" {
   default     = 1
 }
 
-/*variable "secrets" {
-  description = "Map of secrets to pull from Secrets Manager"
-  type        = map(string)
-  default     = {}
-}*/
-
 # Autoscaling Configuration
 variable "min_capacity" {
   description = "Minimum number of ECS tasks"
@@ -185,7 +167,7 @@ variable "scale_out_cooldown" {
   default     = 300
 }
 
-variable "nginx_image" {
+/*variable "nginx_image" {
   description = "nginx image"
   type        = string
-}
+}*/

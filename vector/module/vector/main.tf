@@ -13,9 +13,10 @@ resource "aws_ecs_task_definition" "vector_main" {
       name      = "vector-${var.name}"
       image     = var.container_image
       essential = true
-      #"repositoryCredentials": {
-       # "credentialsParameter": var.svc_account
-      #}
+      stopTimeout = 120
+      "repositoryCredentials": {
+        "credentialsParameter": var.svc_account
+      }
 
     
        portMappings = var.port_mappings
@@ -34,22 +35,23 @@ resource "aws_ecs_task_definition" "vector_main" {
           "awslogs-stream-prefix" = "vector"
         }
       }
-    },
-    {
-      name      = "nginx-${var.name}"
-      image     = var.nginx_image
-      essential = true
+    }
+    /*{
+      name        = "nginx-${var.name}"
+      image       = var.nginx_image
+      essential   = true
+      stopTimeout = 120
 
-     #"repositoryCredentials": {
+     "repositoryCredentials": {
 
-        #"credentialsParameter": var.svc_account
+        "credentialsParameter": var.svc_account
 
-      #}
+      }
 
       portMappings = [
         {
-          containerPort = 80
-          hostPort = 80
+          containerPort = 8080
+          hostPort      = 8080
           protocol      = "tcp"
         }
       ]
@@ -71,7 +73,7 @@ resource "aws_ecs_task_definition" "vector_main" {
           awslogs-stream-prefix = "nginx"
         }
       }
-    }
+    }*/
 
   ])
   tags = var.tags
@@ -95,7 +97,7 @@ resource "aws_ecs_service" "vector_main" {
   load_balancer {
     target_group_arn = var.target_group_arn
     container_name   = "vector-${var.name}" 
-    container_port   = 8686              
+    container_port   = 80              
   }
 }
 

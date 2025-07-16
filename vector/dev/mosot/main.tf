@@ -16,13 +16,13 @@ resource "aws_s3_object" "vector_config" {
 }
 resource "aws_s3_object" "nginx_config" {
   bucket = var.bucket_name
-  key    = "nginx_config/ngnix_mosot.conf" 
+  key    = "nginx_config/nginx_mosot.conf" 
   source = "nginx_mosot.conf"  
   etag   = filemd5("nginx_mosot.conf")  
 }
 
 module "vector_mosot" {
- source = "../../module/vector"
+ source = "../../modules/vector"
  
   # Basic settings
   aws_region               = var.aws_region
@@ -37,15 +37,14 @@ module "vector_mosot" {
   cpu_target_value         = var.cpu_target_value
   scale_in_cooldown        = var.scale_in_cooldown
   scale_out_cooldown       = var.scale_out_cooldown
-  #target_mount_point = var.target_mount_point
-  #source_mount_point = var.source_mount_point
-  #efs_id = var.efs_id
+  
   port_mappings = var.port_mappings
+  svc_account            = var.svc_account
   container_image        = var.container_image
+  #nginx_image            = var.nginx_image 
   environment            = var.environment
   target_group_arn       = var.target_group_arn
-  nginx_image            = var.nginx_image 
-  #secrets                = var.secrets
+ 
   
   # Network configuration
   vpc_id             = var.vpc_id

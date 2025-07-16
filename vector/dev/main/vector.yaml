@@ -1,6 +1,8 @@
-#log:
-#  level: debug
-# Global configuration
+
+api:
+  enabled: true
+  address: 0.0.0.0:80
+
 acknowledgements:
   enabled: true
 sources:
@@ -28,37 +30,12 @@ transforms:
        . = map_values(.)  -> |event| {
 
        json_msg = replace(string!(event.logEvents.message), "None", "0")
-       #msg = null
+       json_msg = string!(event.logEvents.message)
 
-       # Check if the message is valid JSON
-       json_msg = is_json(json_msg)
-       if (json_msg == true) {
-           json_msg = string!(event.logEvents.message)
-       } else {
-           json_msg = replace(string!(event.logEvents.message), "'", "\"")
-           #json_msg = replace(json_msg, r'INFO:', " ")
-
-           # Remove unwanted "Execution Summary" content
-           #json_msg = replace(json_msg, r'.*Execution Summary :\s*', "")
-           # Remove any remaining tabs and replace them with a space
-           #json_msg = replace(json_msg, r'\t+', " ")
-           #json_msg = replace(json_msg, r'([0-9]+)\:', "\"$$1\":")
-           json_msg = replace(json_msg, r'INFO:', " ")
-           json_msg = replace(json_msg, r'.*Execution Summary :\s*', "")
-           json_msg = replace(json_msg, r'([0-9]+)\: ', "\"$$1\":")
-       }
-
-       # Check if the message starts with certain log formats (e.g., [ERROR], [INFO])
        if starts_with(json_msg, "[ERROR]") || starts_with(json_msg, "[INFO]") {
            msg = parse_json!(split(json_msg, "\t")[3])
        } else {
-       #json_msg = replace(json_msg, r'^(\[INFO\]\t\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z\t[a-f0-9-]+\t)', "")
-       #json_msg = replace(json_msg, r'^(\[ERROR\]\t\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z\t[a-f0-9-]+\t)', "")
-       #json_msg = replace(json_msg, r'.*Execution Summary :\s*', "")
-       #json_msg = replace(json_msg, r'INFO:', " ")
-       #json_msg = replace(json_msg, r'([0-9]+)\: ', "\"$$1\":")
-       #json_msg = encode_json(json_msg)
-       msg = parse_json!(json_msg)
+           msg = parse_json!(json_msg)
        }
 
        msg.logGroup=event.logGroup
@@ -69,13 +46,14 @@ transforms:
                 msg.totalFileRecords = 0
                 }
              }
+
        if (msg.product == "npd-circana")
              {msg.product = "mosot"}
        if (msg.source_app == "DASH")
              {msg.product = "mosot"
              msg.appName = "mosot-api" }
        if (msg.product == "star checkpoint")
-              {msg.product = "star" }
+             {msg.product = "star" }
        if (msg.source_app == "ITEM-VISTA")
              {msg.product = "item-vista"
              msg.appName = "item-vista" }
@@ -87,8 +65,6 @@ transforms:
              {msg.product = "star"}
        if (msg.product == "people_analytics")
              {msg.product = "people-analytics"}
-       if (msg.product == "gfmod")
-             {msg.product = "gfmod"}
        msg
        }
 
@@ -109,6 +85,7 @@ transforms:
        prod_fnp: .product == "fnp"
        prod_people-analytics: .product == "people-analytics"
        prod_gfmod: .product == "gfmod"
+       prod_salesforecast: .product == "salesforecast"
 
 #log:
  #level: "debug"
@@ -141,7 +118,7 @@ sinks:
     type: vector
     inputs:
       - route_log.prod_mosot
-    address: localhost:6001
+    address: http://vector-dev.mcd.com/vector-mosot/
 
   star:
     type: vector
@@ -212,6 +189,13 @@ sinks:
     inputs:
       - route_log.prod_gfmod
     address: localhost:6015
+
+  salesforecast:
+    type: vector
+    inputs:
+      - route_log.prod_salesforecast
+    address: localhost:6016
+
 
   unmatched:
     type: vector

@@ -75,10 +75,10 @@ variable "service_count" {
   type        = number
   default     = 1
 }
-/*variable "svc_account" {
+variable "svc_account" {
   description = "JFROG repo service account"
   type        = string
- }*/
+}
 
 variable "vpc_id" {
   description = "VPC ID where the ECS task will run"
@@ -99,23 +99,8 @@ variable "security_group_ids" {
 variable "assign_public_ip" {
   description = "Whether to assign a public IP to the Fargate task"
   type        = bool
-  default     = true
+  default     = false
 }
-
-/*variable "target_mount_point" {
-  description = "target mount point on vector"
-  type        = string
-}
-
-variable "source_mount_point" {
-  description = "source mount point on efs"
-  type        = string
-}
-
-variable "efs_id" {
-  description = "efs file system id"
-  type        = string
-}*/
 
 variable "port_mappings" {
   description = "A list of port mappings for the ECS container."
@@ -163,11 +148,6 @@ variable "task_role_arn" {
   description = "ARN of the task role"
   default     = ""
 }
-/*variable "secrets" {
-  description = "Map of secrets to pull from Secrets Manager"
-  type        = map(string)
-  default     = {}
-}*/
 
 variable "environment" {
   description = "Map of environment variables (not from secrets)"
@@ -205,7 +185,8 @@ variable "scale_out_cooldown" {
   type        = number
   default     = 300
 }
-variable "nginx_image" {
+
+/*variable "nginx_image" {
   description = "nginx image"
   type        = string
-}
+}*/

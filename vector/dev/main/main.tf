@@ -1,9 +1,10 @@
+
  provider "aws" {
   region = var.aws_region
 
   default_tags {
     tags = {
-      ApplicationID = "239"
+      ApplicationID = "2000039"
     }
   }
 }
@@ -13,7 +14,6 @@
   source = "vector.yaml"  
   etag   = filemd5("vector.yaml")  
 }
-
 resource "aws_s3_object" "nginx_config" {
   bucket = var.bucket_name
   key    = "nginx_config/nginx_main.conf" 
@@ -22,7 +22,7 @@ resource "aws_s3_object" "nginx_config" {
 }
 
 module "vector_main" {
- source = "../../module/vector"
+ source = "../../modules/vector"
  
   # Basic settings
   aws_region             = var.aws_region
@@ -31,13 +31,13 @@ module "vector_main" {
   cluster_name           = var.cluster_name
   execution_role_arn     = var.execution_role_arn
   task_role_arn          = var.task_role_arn
+  
   port_mappings          = var.port_mappings
-  #svc_account            = var.svc_account
+  svc_account            = var.svc_account
   container_image        = var.container_image
-  nginx_image            = var.nginx_image 
+  #nginx_image            = var.nginx_image 
   environment            = var.environment
   target_group_arn       = var.target_group_arn
-  
   
 
   service_count       = var.service_count
@@ -63,7 +63,6 @@ module "vector_main" {
   vector_version    = var.vector_version
   vector_log_level  = var.vector_log_level
   log_retention_days = var.log_retention_days
- 
  
   # Tags
   tags = var.tags

@@ -1,11 +1,15 @@
+api:
+  enabled: true
+  address: 0.0.0.0:80
+
 sources:
   vector_metrics:
     type: internal_metrics
- 
+
   input:
     type: vector
     address: 0.0.0.0:8686
- 
+
 transforms:
   parse_json:
     inputs:
@@ -54,10 +58,8 @@ transforms:
             del(.endpoint)
             del(.operation)
            }
- 
- 
+
 sinks:
- 
   i1:
     type: console
     inputs:
@@ -65,7 +67,7 @@ sinks:
     encoding:
        codec: json
     target: stdout
- 
+
   i2:
     type: console
     inputs:
@@ -73,24 +75,21 @@ sinks:
     encoding:
        codec: json
     target: stdout
- 
- 
+
   mosot:
     type: clickhouse
     inputs:
       - parse_json
     database: default
-    endpoint: http://13.221.175.9:8123
+    endpoint: http://100.106.23.77:8123
     table: cloudwatch
     auth:
       strategy: basic
       user: "${clk_val1}"
       password: "${clk_val2}"
- 
+
   prometheus:
     type: prometheus_exporter
     inputs:
       - vector_metrics
     address: "0.0.0.0:9092"
-   
-    
