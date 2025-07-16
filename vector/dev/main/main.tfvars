@@ -10,7 +10,7 @@ subnet_ids             = ["subnet-07adaeb561618127e" , "subnet-03a9ba72e44d58bd2
 security_group_ids     = ["sg-0843384d70da85c46" , "sg-0baac50d3fac315bc"]
 assign_public_ip       = true
 bucket_name            = "mohana6-bucket"
-#container_image        = "269031123365.dkr.ecr.us-east-1.amazonaws.com/mohana:latest"
+container_image        = "269031123365.dkr.ecr.us-east-1.amazonaws.com/mohana:vector_nginx"
 #nginx_image = "269031123365.dkr.ecr.us-east-1.amazonaws.com/mohana:nginx"
 target_group_arn       = "arn:aws:elasticloadbalancing:us-east-1:269031123365:targetgroup/vector-tg/e282a74b31eb1e61"
 
