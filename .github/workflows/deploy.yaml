@@ -31,6 +31,7 @@ jobs:
         # ADD -var-file=main.tfvars here
         run: terraform plan -destroy -out=tfplan -var-file=main.tfvars
 
+        
       - name: Terraform Apply Destroy
         working-directory: vector/dev/mosot
         # You don't need -var-file for apply if you use the -out from plan
