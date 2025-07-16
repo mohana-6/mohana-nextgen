@@ -87,6 +87,7 @@ resource "aws_ecs_service" "vector_main" {
   desired_count   = var.service_count
   launch_type     = "FARGATE"
   tags            = var.tags
+  enable_execute_command = true
  
   network_configuration {
     subnets          = var.subnet_ids
