@@ -15,12 +15,12 @@ container_image        = "269031123365.dkr.ecr.us-east-1.amazonaws.com/mohana:ve
 target_group_arn       = "arn:aws:elasticloadbalancing:us-east-1:269031123365:targetgroup/vector-tg/e282a74b31eb1e61"
 
 # Autoscaling Configuration
-min_capacity       = 1
-max_capacity       = 1
+min_capacity       = 0
+max_capacity       = 0
 cpu_target_value   = 85
 scale_in_cooldown  = 300
 scale_out_cooldown = 300
-service_count      = 1
+service_count      = 0
 
 port_mappings = [
   {
