@@ -9,10 +9,6 @@ variable "name" {
   description = "Application name"
   type        = string
 }
-variable "bucket_name" {
-  description = "Bucket name"
-  type        = string
-}
 
 variable "resource_prefix" {
   description = "Prefix for naming resources"

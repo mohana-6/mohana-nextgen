@@ -38,7 +38,7 @@ module "vector_mosot" {
   #nginx_image            = var.nginx_image 
   environment            = var.environment
   target_group_arn       = var.target_group_arn
- 
+
   
   # Network configuration
   vpc_id             = var.vpc_id
