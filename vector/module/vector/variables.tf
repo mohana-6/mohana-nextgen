@@ -75,10 +75,10 @@ variable "service_count" {
   type        = number
   default     = 1
 }
-variable "svc_account" {
+/*variable "svc_account" {
   description = "JFROG repo service account"
   type        = string
-}
+}*/
 
 variable "vpc_id" {
   description = "VPC ID where the ECS task will run"

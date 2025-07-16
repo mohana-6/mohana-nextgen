@@ -14,12 +14,6 @@ resource "aws_s3_object" "vector_config" {
   source = "vector_mosot.yaml"  
   etag   = filemd5("vector_mosot.yaml")  
 }
-resource "aws_s3_object" "nginx_config" {
-  bucket = var.bucket_name
-  key    = "nginx_config/nginx_mosot.conf" 
-  source = "nginx_mosot.conf"  
-  etag   = filemd5("nginx_mosot.conf")  
-}
 
 module "vector_mosot" {
  source = "../../module/vector"
@@ -39,7 +33,7 @@ module "vector_mosot" {
   scale_out_cooldown       = var.scale_out_cooldown
   
   port_mappings = var.port_mappings
-  svc_account            = var.svc_account
+  #svc_account            = var.svc_account
   container_image        = var.container_image
   #nginx_image            = var.nginx_image 
   environment            = var.environment

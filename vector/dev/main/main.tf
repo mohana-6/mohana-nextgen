@@ -14,12 +14,7 @@
   source = "vector.yaml"  
   etag   = filemd5("vector.yaml")  
 }
-resource "aws_s3_object" "nginx_config" {
-  bucket = var.bucket_name
-  key    = "nginx_config/nginx_main.conf" 
-  source = "nginx_main.conf"  
-  etag   = filemd5("nginx_main.conf")  
-}
+
 
 module "vector_main" {
  source = "../../module/vector"
@@ -33,7 +28,7 @@ module "vector_main" {
   task_role_arn          = var.task_role_arn
   
   port_mappings          = var.port_mappings
-  svc_account            = var.svc_account
+  #svc_account            = var.svc_account
   container_image        = var.container_image
   #nginx_image            = var.nginx_image 
   environment            = var.environment

@@ -45,10 +45,10 @@ variable "security_group_ids" {
   type        = list(string)  
   default     = [] 
 }
-variable "svc_account" {
+/*variable "svc_account" {
   description = "JFROG repo service account"
   type        = string
-}
+}*/
 
 variable "assign_public_ip" {
   description = "Whether to assign public IP addresses to ECS tasks"

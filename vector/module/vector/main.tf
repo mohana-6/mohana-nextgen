@@ -14,9 +14,9 @@ resource "aws_ecs_task_definition" "vector_main" {
       image     = var.container_image
       essential = true
       stopTimeout = 120
-      "repositoryCredentials": {
+      /*"repositoryCredentials": {
         "credentialsParameter": var.svc_account
-      }
+      }*/
 
     
        portMappings = var.port_mappings
