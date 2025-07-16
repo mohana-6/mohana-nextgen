@@ -12,8 +12,7 @@ assign_public_ip       = false
 bucket_name            = "mohana6-bucket"
 container_image        = "269031123365.dkr.ecr.us-east-1.amazonaws.com/mohana:vector_nginx"
 #nginx_image = "269031123365.dkr.ecr.us-east-1.amazonaws.com/mohana:nginx"
-target_group_arn       = "arn:aws:elasticloadbalancing:us-east-1:269031123365:targetgroup/vector-mosot-target/f25862d87da2836d"
-
+target_group_arn       = "arn:aws:elasticloadbalancing:us-east-1:269031123365:targetgroup/vector-tg/e282a74b31eb1e61"
 min_capacity           = 1
 max_capacity           = 1
 cpu_target_value       = 85
