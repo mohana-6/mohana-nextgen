@@ -6,7 +6,17 @@ RUN apk add --no-cache \
     aws-cli \
     groff \
     less \
-    curl
+    curl \
+    bash \
+    ca-certificates \
+    unzip \
+    && curl -sSL -o grpcurl.tar.gz https://github.com/fullstorydev/grpcurl/releases/latest/download/grpcurl_1.8.9_linux_x86_64.tar.gz \
+    && tar -xzf grpcurl.tar.gz -C /usr/local/bin \
+    && chmod +x /usr/local/bin/grpcurl \
+    && rm grpcurl.tar.gz
+
+# Optional: verify installation
+RUN grpcurl --version
 
 # Copy NGINX config to its default location
 COPY nginx.conf /etc/nginx/nginx.conf
@@ -16,7 +26,7 @@ COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 # Optional: expose NGINX port (Vector runs on 8686 internally)
-EXPOSE 8080
+EXPOSE 8787
 
 # Entrypoint will start both services
 ENTRYPOINT ["/entrypoint.sh"]
