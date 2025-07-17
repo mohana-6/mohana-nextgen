@@ -15,8 +15,8 @@ container_image        = "324936657337.dkr.ecr.us-east-1.amazonaws.com/errorbudg
 target_group_arn       = "arn:aws:elasticloadbalancing:us-east-1:324936657337:targetgroup/vector-tg/dd25bfa3edae118d"
 
 # Autoscaling Configuration
-min_capacity       = 0
-max_capacity       = 0
+min_capacity       = 1
+max_capacity       = 1
 cpu_target_value   = 85
 scale_in_cooldown  = 300
 scale_out_cooldown = 300
