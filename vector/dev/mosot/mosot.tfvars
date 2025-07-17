@@ -13,12 +13,12 @@ bucket_name            = "errorbudget-s3"
 container_image        = "324936657337.dkr.ecr.us-east-1.amazonaws.com/errorbudget_repo:vector_nginx"
 #nginx_image           = "269031123365.dkr.ecr.us-east-1.amazonaws.com/mohana:nginx"
 target_group_arn       = "arn:aws:elasticloadbalancing:us-east-1:324936657337:targetgroup/vector-mosot-target/cc6dcfdecfcf242f"
-min_capacity           = 0
-max_capacity           = 0
+min_capacity           = 1
+max_capacity           = 1
 cpu_target_value       = 85
 scale_in_cooldown      = 300
 scale_out_cooldown     = 300
-service_count          = 0
+service_count          = 1
 
 port_mappings = [
   {
@@ -34,8 +34,8 @@ port_mappings = [
 
 ]
 
-task_cpu               = "2048"
-task_memory            = "4096"
+task_cpu               = "1024"
+task_memory            = "2048"
 vector_version         = "0.39.0-alpine"
 vector_log_level       = "info"
 log_retention_days     = 30
@@ -44,7 +44,7 @@ log_retention_days     = 30
 environment = {
   "VECTOR_LOG" = "debug"
   "RUST_BACKTRACE" = "full"
-  "VECTOR_CONFIG_BUCKET_URL" = "s3://mohana6-bucket/vector_config/vector_mosot.yaml"
+  "VECTOR_CONFIG_BUCKET_URL" = "s3://errorbudget-s3/vector_config/vector_mosot.yaml"
   "clk_val1"            = "iamusername"
   "clk_val2"            = "iamsecretpassword" 
 
