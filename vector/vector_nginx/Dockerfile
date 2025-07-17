@@ -10,10 +10,11 @@ RUN apk add --no-cache \
     bash \
     ca-certificates \
     unzip \
-    && curl -sSL -o grpcurl.tar.gz https://github.com/fullstorydev/grpcurl/releases/latest/download/grpcurl_1.8.9_linux_x86_64.tar.gz \
-    && tar -xzf grpcurl.tar.gz -C /usr/local/bin \
-    && chmod +x /usr/local/bin/grpcurl \
-    && rm grpcurl.tar.gz
+  && curl -sSL -o /usr/local/bin/grpcurl.tar.gz \
+       https://github.com/fullstorydev/grpcurl/releases/download/v1.9.3/grpcurl_1.9.3_linux_x86_64.tar.gz \
+  && tar -xzf /usr/local/bin/grpcurl.tar.gz -C /usr/local/bin \
+  && chmod +x /usr/local/bin/grpcurl \
+  && rm /usr/local/bin/grpcurl.tar.gz
 
 # Optional: verify installation
 RUN grpcurl --version
