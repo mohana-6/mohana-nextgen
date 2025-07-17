@@ -118,7 +118,7 @@ sinks:
     type: vector
     inputs:
       - route_log.prod_mosot
-    address: http://vector-dev.mcd.com/vector-mosot/
+    address: http://mohana-alb-819087932.us-east-1.elb.amazonaws.com/vector-mosot/
 
   star:
     type: vector
