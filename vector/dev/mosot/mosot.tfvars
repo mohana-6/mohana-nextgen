@@ -1,24 +1,24 @@
 aws_region             = "us-east-1"
 name                   = "mosot"
-cluster_id             = "arn:aws:ecs:us-east-1:269031123365:cluster/mohana-ecs-cluster"
-cluster_name           = "mohana-ecs-cluster"
-execution_role_arn     = "arn:aws:iam::269031123365:role/mohana-admin-role"
-task_role_arn          = "arn:aws:iam::269031123365:role/mohana-admin-role"
+cluster_id             = "arn:aws:ecs:us-east-1:324936657337:cluster/errorbudget-cluster"
+cluster_name           = "errorbudget-cluster"
+execution_role_arn     = "arn:aws:iam::324936657337:role/errorbudget_ec2_role"
+task_role_arn          = "arn:aws:iam::324936657337:role/errorbudget_ec2_role"
 #svc_account            = "arn:aws:secretsmanager:us-east-1:178445662108:secret:non-prod-gdap-artifactory-ybrklc"
-vpc_id                 = "vpc-0437701bbfe96b9a9"
-subnet_ids             = ["subnet-09861fbc20853cc66" , "subnet-018a29d7fc5cf6401"]
-security_group_ids     = ["sg-0843384d70da85c46" , "sg-0baac50d3fac315bc"]
+vpc_id                 = "vpc-0e68bf7f59a3c89d4"
+subnet_ids             = ["subnet-0c2a2cfee95ed2a2e" , "subnet-078af0ab3c67821ea"]
+security_group_ids     = ["sg-0707c29990939be2b"]
 assign_public_ip       = false
-bucket_name            = "mohana6-bucket"
-container_image        = "269031123365.dkr.ecr.us-east-1.amazonaws.com/mohana:nginx_vector"
+bucket_name            = "errorbudget-s3"
+container_image        = "324936657337.dkr.ecr.us-east-1.amazonaws.com/errorbudget_repo:vector_nginx"
 #nginx_image = "269031123365.dkr.ecr.us-east-1.amazonaws.com/mohana:nginx"
-target_group_arn       = "arn:aws:elasticloadbalancing:us-east-1:269031123365:targetgroup/vector-mosot-target/f25862d87da2836d"
-min_capacity           = 0
-max_capacity           = 0
+target_group_arn       = "arn:aws:elasticloadbalancing:us-east-1:324936657337:targetgroup/vector-mosot-target/cc6dcfdecfcf242f"
+min_capacity           = 1
+max_capacity           = 1
 cpu_target_value       = 85
 scale_in_cooldown      = 300
 scale_out_cooldown     = 300
-service_count          = 0
+service_count          = 1
 
 port_mappings = [
   {
