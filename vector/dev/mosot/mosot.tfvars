@@ -34,7 +34,6 @@ port_mappings = [
 
 ]
 
-
 task_cpu               = "1024"
 task_memory            = "2048"
 vector_version         = "0.39.0-alpine"
