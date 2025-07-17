@@ -12,7 +12,7 @@ assign_public_ip       = false
 bucket_name            = "errorbudget-s3"
 container_image        = "324936657337.dkr.ecr.us-east-1.amazonaws.com/errorbudget_repo:vector_nginx"
 #nginx_image = "269031123365.dkr.ecr.us-east-1.amazonaws.com/mohana:nginx"
-target_group_arn       = "arn:aws:elasticloadbalancing:us-east-1:269031123365:targetgroup/vector-tg/e282a74b31eb1e61"
+target_group_arn       = "arn:aws:elasticloadbalancing:us-east-1:324936657337:targetgroup/vector-tg/dd25bfa3edae118d"
 
 # Autoscaling Configuration
 min_capacity       = 0
