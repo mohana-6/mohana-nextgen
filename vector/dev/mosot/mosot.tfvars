@@ -13,12 +13,12 @@ bucket_name            = "errorbudget-s3"
 container_image        = "324936657337.dkr.ecr.us-east-1.amazonaws.com/errorbudget_repo:vector_nginx"
 #nginx_image           = "269031123365.dkr.ecr.us-east-1.amazonaws.com/mohana:nginx"
 target_group_arn       = "arn:aws:elasticloadbalancing:us-east-1:324936657337:targetgroup/vector-mosot-target/cc6dcfdecfcf242f"
-min_capacity           = 0
-max_capacity           = 0
+min_capacity           = 1
+max_capacity           = 1
 cpu_target_value       = 85
 scale_in_cooldown      = 300
 scale_out_cooldown     = 300
-service_count          = 0
+service_count          = 1
 
 port_mappings = [
   {
